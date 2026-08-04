@@ -100,3 +100,21 @@ where salary > ANY (
     FROM employees
     WHERE department_id=3
 );
+
+--Level 4
+
+SELECT department_name
+FROM departments d
+WHERE EXISTS (
+    SELECT 1
+    FROM employees e
+    WHERE e.department_id = d.department_id
+);
+
+SELECT employee_name
+FROM employees e1
+WHERE EXISTS (
+    SELECT 1
+    FROM employees e2
+    WHERE e2.manager_id = e1.employee_id
+);
