@@ -118,3 +118,42 @@ WHERE EXISTS (
     FROM employees e2
     WHERE e2.manager_id = e1.employee_id
 );
+
+--Level 5
+
+select e.employee_name, d.department_name
+from employees e
+join departments d
+on d.department_id =e.department_id
+where salary >
+(
+    select AVG(salary)
+     as avg_sal
+    from employees e2
+    where e2.department_id =e.department_id
+);
+
+
+select e.employee_name, d.department_name
+from employees e
+join departments d 
+on e.department_id=d.department_id
+where salary = (
+select max(salary)
+from employees e2
+where e2.department_id=e.department_id
+);
+
+select e.employee_name, d.department_name
+from employees e
+join departments d 
+on e.department_id=d.department_id
+where salary = (
+select min(salary)
+from employees e2
+where e2.department_id=e.department_id
+);
+
+
+
+
