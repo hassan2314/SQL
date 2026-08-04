@@ -52,3 +52,33 @@ where department_id = (Select department_id from employees where employee_name='
 select employee_name
 From employees
 where manager_id = (select manager_id from employees where employee_name='Usman' );
+
+-- Level 2
+
+Select employee_name
+From employees
+where department_id=
+In
+(select department_id 
+from departments 
+where department_name 
+like('M%'));
+
+Select employee_name
+From employeides
+where department_id in
+(
+    select department_id 
+    From employees
+    group by department_id
+    having count(*)>1
+);
+
+Select employee_name
+From employees
+where employee_id
+In (
+    select manager_id
+    from employees 
+    Where manager_id is not null
+);
