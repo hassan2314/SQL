@@ -82,3 +82,21 @@ In (
     from employees 
     Where manager_id is not null
 );
+
+-- Level 3
+
+SELECT employee_name, salary
+FROM employees
+WHERE salary > ALL (
+    SELECT salary
+    FROM employees
+    WHERE department_id = 1
+);
+
+SELECT employee_name 
+FROM employees
+where salary > ANY (
+    select salary
+    FROM employees
+    WHERE department_id=3
+);
