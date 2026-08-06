@@ -154,6 +154,28 @@ from employees e2
 where e2.department_id=e.department_id
 );
 
+--Level 6
+
+select e.employee_name, 
+m.employee_name as Manager
+from employees e
+INNER JOIN employees m ON e.manager_id = m.employee_id
+where e.manager_id is not null and e.salary >(
+    select salary
+    from employees e2
+where e2.employee_id=e.manager_id
+);
+
+SELECT MAX(salary)
+FROM employees
+WHERE salary < (
+    SELECT MAX(salary)
+    FROM employees
+);
+
+
+
+
 
 
 
