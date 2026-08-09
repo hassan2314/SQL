@@ -33,3 +33,28 @@ select
     End AS status
 From employees e;
 
+
+-- Level 2
+
+select 
+    e.employee_name, 
+    e.salary,
+    d.department_name,
+    Round(AVG(salary) OVER( PARTITION BY e.department_id)) ,
+     CASE
+        WHEN salary - AVG(salary) OVER(PARTITION BY e.department_id) > 0 Then 'Above'
+        WHEN salary - AVG(salary) OVER(PARTITION BY e.department_id) < 0 Then 'Bellow'
+        ELSE 'Normal'
+    End AS status
+from employees e
+    INNER JOIN departments d
+    on e.department_id=d.department_id;
+
+
+select 
+     e.employee_name,
+     e.salary,
+     Round(Max(Salary) OVER (PARTITION by e.department_id)) as max_dept
+from employees e;
+
+
