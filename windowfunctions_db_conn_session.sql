@@ -58,3 +58,29 @@ select
 from employees e;
 
 
+--Level 3
+select
+    e.employee_name,
+    e.salary,
+    ROW_NUMBER() OVER (
+    ORDER BY salary DESC
+)
+FROM employees e;
+
+select
+    e.employee_name,
+    e.salary,
+    RANK() OVER (
+    ORDER BY salary DESC
+)
+FROM employees e;
+
+select
+    e.employee_name,
+    e.salary,
+    DENSE_RANK() OVER (
+    ORDER BY salary DESC
+)
+FROM employees e;
+
+
