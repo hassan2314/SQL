@@ -92,7 +92,7 @@ select
      DENSE_RANK() OVER (
     PARTITION BY e.department_id
     ORDER BY salary DESC
-)
+) AS Dept_Rank
 FROM employees e
     JOIN departments d
     ON d.department_id=e.department_id;
