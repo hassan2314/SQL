@@ -83,4 +83,19 @@ select
 )
 FROM employees e;
 
+-- Level 4
+
+select 
+    e.employee_name,
+    e.salary,
+    d.department_name,
+     DENSE_RANK() OVER (
+    PARTITION BY e.department_id
+    ORDER BY salary DESC
+)
+FROM employees e
+    JOIN departments d
+    ON d.department_id=e.department_id;
+
+
 
